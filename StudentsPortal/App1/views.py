@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
@@ -45,5 +46,6 @@ def logout_user(request):
 	return redirect('login')
 
 
+@login_required(login_url='login')
 def home(request):
 	return render(request, 'App1/dashboard.html')
