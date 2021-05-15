@@ -8,7 +8,9 @@ from django.contrib import messages
 
 # Create your views here.
 from . forms import CreateUserForm
+from .decorators import *
 
+@unauthenticated_user
 def registration_page(request):
 	form = CreateUserForm()
 
@@ -23,7 +25,7 @@ def registration_page(request):
 	context = {'form':form}
 	return render(request, 'App1/register.html', context)
 
-
+@unauthenticated_user
 def login_page(request):
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -46,6 +48,6 @@ def logout_user(request):
 	return redirect('login')
 
 
-@login_required(login_url='login')
+@login_required(login_url='login') # only allows users who are logged in with correct credentials
 def home(request):
 	return render(request, 'App1/dashboard.html')
