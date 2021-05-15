@@ -40,6 +40,10 @@ def login_page(request):
 	return render(request, 'App1/login.html', context)
 
 
+def logout_user(request):
+	logout(request)
+	return redirect('login')
+
 
 def home(request):
 	return render(request, 'App1/dashboard.html')
