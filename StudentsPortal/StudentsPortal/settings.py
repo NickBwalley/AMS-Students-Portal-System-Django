@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # myApps
     'App1',
 ]
 
@@ -68,6 +69,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'App1.user'
 
 WSGI_APPLICATION = 'StudentsPortal.wsgi.application'
 
