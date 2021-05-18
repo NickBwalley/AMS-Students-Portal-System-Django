@@ -57,8 +57,9 @@ class MyAccountManager(BaseUserManager):
 
 class user(AbstractBaseUser):
 
-	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
-	phonenumber = RegexValidator(r'^[0-9]*$', 'Only Numerical characters are allowed.')
+	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed!')
+	# Regex to match 10 to 12 digits only
+	phonenumber = RegexValidator(r'^[0-9]{10,12}$', 'Only Numerical characters are allowed!(10-12Digits)')
 
 	firstname		= models.CharField(max_length=30, unique=False, validators=[alphanumeric])
 	surname 		= models.CharField(max_length=30, unique=False, validators=[alphanumeric])
