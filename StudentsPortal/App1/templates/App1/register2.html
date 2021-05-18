@@ -76,7 +76,7 @@
 				</div>
 				<div class="d-flex justify-content-center form_container">
 
-					<form method="POST" action="">
+					<form method="POST" action="" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}">
 						{% csrf_token	%}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
@@ -107,27 +107,20 @@
 							{{form.phonenumber}}
 						</div>
 
-						<div class="input-group mb-2">
+						<div class="input-group mb-2" id="country" name="country">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-globe"></i></span>
 							</div>
 							{{form.country}}
 						</div>
 
-						<div class="input-group mb-2">
+						<div class="input-group mb-2" id="university" name="university">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-university"></i></span>
 							</div>
-							{{form.university}}
+							{{form.university}}	
 						</div>
-
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
-							</div>
-							{{form.course}}
-						</div>
-
+						
 
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -169,17 +162,49 @@
 		form_fields[2].placeholder='Enter Surname';
 		form_fields[3].placeholder='Enter Email-Address';
 		form_fields[4].placeholder='Enter Phonenumber';
-		form_fields[5].placeholder='Enter Country';
-		form_fields[6].placeholder='Enter University';
-		form_fields[7].placeholder='Enter Course';
-		form_fields[8].placeholder='Enter Password';
-		form_fields[9].placeholder='Confirm Password';
+		// form_fields[5].placeholder='Enter Country';
+		// form_fields[6].placeholder='Enter University';
+		//form_fields[7].placeholder='Enter Course';
+		form_fields[7].placeholder='Enter Password';
+		form_fields[8].placeholder='Confirm Password';
 
 
 		for (var field in form_fields){	
 			form_fields[field].className += ' form-control'
 		}
 	</script>
+
+<!--AJAX LOAD COUNTRIES AND UNIVERSITIES-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_country").change(function () {
+        const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countryId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'country_id': countryId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+            	console.log(data);
+                $("#id_university").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
 
 	
 </body>

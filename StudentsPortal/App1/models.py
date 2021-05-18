@@ -5,6 +5,28 @@ from django.core.validators import RegexValidator
 # Create your models here.
 
 
+class Country(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
+
+
+class University(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+# class Course(models.Model):
+#     country = models.ForeignKey(University, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=255)
+
+#     def __str__(self):
+#         return self.name
+
 
 class MyAccountManager(BaseUserManager):
 	def create_user(self, email, password=None):
@@ -42,9 +64,9 @@ class user(AbstractBaseUser):
 	surname 		= models.CharField(max_length=30, unique=False, validators=[alphanumeric])
 	email 			= models.EmailField(verbose_name="email", max_length=60, unique=True)
 	phonenumber 	= models.CharField(max_length=30, unique=True, validators=[phonenumber])
-	country 	= models.CharField(max_length=30, unique=False)
-	university 		= models.CharField(max_length=60, unique=False)
-	course			= models.CharField(max_length=60, unique=False)
+	country 		= models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
+	university 		= models.ForeignKey(University, on_delete=models.SET_NULL, null=True)
+	#course			= models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
 	date_joined 	= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
 	last_login		= models.DateTimeField(verbose_name='last login', auto_now=True)
 	is_admin 		= models.BooleanField(default=False)

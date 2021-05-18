@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 
@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
-from . forms import CreateUserForm, create_user_form
+from . forms import create_user_form
+from .models import user, Country, University
 from .decorators import *
 
 @unauthenticated_user
@@ -51,3 +52,15 @@ def logout_user(request):
 @login_required(login_url='login') # only allows users who are logged in with correct credentials
 def home(request):
 	return render(request, 'App1/dashboard.html')
+
+
+
+# AJAX
+def load_cities(request):
+    country_id = request.GET.get('country_id')
+    universities = University.objects.filter(country_id=country_id).all()
+    return render(request, 'App1/city_dropdown_list_options.html', {'universities': universities})
+    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+
+
+
