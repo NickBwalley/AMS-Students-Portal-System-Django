@@ -62,8 +62,8 @@ def load_cities(request):
     return render(request, 'App1/university_dropdown_list_options.html', {'universities': universities})
 
 def load_cities2(request):
-    university_id = request.GET.get('country_id')
-    courses = Course.objects.filter(country_id=university_id).all()
+    university_id = request.GET.get('university_id')
+    courses = Course.objects.filter(university_id=university_id).all()
     return render(request, 'App1/course_dropdown_list_options.html', {'courses': courses})
     # return JsonResponse(list(cities.values('id', 'name')), safe=False)
     

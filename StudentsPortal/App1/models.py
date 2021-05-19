@@ -21,7 +21,7 @@ class University(models.Model):
 
 
 class Course(models.Model):
-    country = models.ForeignKey(University, on_delete=models.CASCADE)
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def __str__(self):

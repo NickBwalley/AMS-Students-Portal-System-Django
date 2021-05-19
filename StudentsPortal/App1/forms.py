@@ -30,11 +30,11 @@ class create_user_form(UserCreationForm):
 
 		if 'university' in self.data:
 			try:
-				country_id = int(self.data.get('country'))
-				self.fields['course'].queryset =Course.objects.filter(country_id=university_id).order_by('name')
+				university_id = int(self.data.get('university'))
+				self.fields['course'].queryset =Course.objects.filter(university_id=university_id).order_by('name')
 			except (ValueError, TypeError):
 				pass # invalid input from the client; ignore and fallback to empty University queryset
 		elif self.instance.pk:
-			self.fields['course'].queryset = self.instance.country.univesity.course_set.order_by('name')
+			self.fields['course'].queryset = self.instance.univesity.course_set.order_by('name')
 
 	

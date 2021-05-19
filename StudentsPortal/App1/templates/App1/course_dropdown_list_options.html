@@ -1,4 +1,16 @@
-<option value="">Select-Course</option>
+<style>
+#myStyle {
+	  width: 100px;
+	  overflow: hidden;
+	  white-space: pre;
+	  text-overflow: ellipsis;
+	  -webkit-appearance: none;
+	  border: solid 1px #DDDDDD;
+}
+</style>
+
+
+<option id="myStyle" value="">Select-Course</option>
 {% for course in courses %}
-<option value="{{ course.pk }}">{{ course.name }}</option>
+<option id="myStyle" value="{{ course.pk }}">{{ course.name }}</option>
 {% endfor %}

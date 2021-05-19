@@ -63,7 +63,7 @@
 			box-shadow: none !important;
 			outline: 0px !important;
 		}
-
+		
 	</style>
 
 </head>
@@ -108,27 +108,27 @@
 							{{form.phonenumber}}
 						</div>
 
-						<div class="input-group mb-2" id="country" name="country">
+						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-globe"></i></span>
 							</div>
 							{{form.country}}
 						</div>
 
-						<div class="input-group mb-2" id="university" name="university">
+						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-university"></i></span>
 							</div>
 							{{form.university}}	
 						</div>
 
-						<div class="input-group mb-2" id="course" name="course">
+						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user-graduate"></i></span>
 							</div>
 							{{form.course}}	
 						</div>
-
+					
 
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -219,7 +219,7 @@
         $.ajax({                       // initialize an AJAX request
             url: url,                    // set the url of the request (= /App1/ajax/load-cities/ )
             data: {
-                'country_id': universityId,      // add the university id to the GET parameters
+                'university_id': universityId,      // add the university id to the GET parameters
                 
             },
 
