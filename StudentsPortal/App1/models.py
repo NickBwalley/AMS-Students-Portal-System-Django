@@ -20,12 +20,12 @@ class University(models.Model):
         return self.name
 
 
-# class Course(models.Model):
-#     country = models.ForeignKey(University, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=255)
+class Course(models.Model):
+    country = models.ForeignKey(University, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 
 class MyAccountManager(BaseUserManager):
@@ -59,7 +59,7 @@ class user(AbstractBaseUser):
 
 	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed!')
 	# Regex to match 10 to 12 digits only
-	phonenumber = RegexValidator(r'^[0-9]{10,12}$', 'Only Numerical characters are allowed!(10-12Digits)')
+	phonenumber = RegexValidator(r'^[0-9]{10,12}$', 'Only Numerical characters are allowed! (Must be 10-12Digits)')
 
 	firstname		= models.CharField(max_length=30, unique=False, validators=[alphanumeric])
 	surname 		= models.CharField(max_length=30, unique=False, validators=[alphanumeric])
@@ -67,7 +67,7 @@ class user(AbstractBaseUser):
 	phonenumber 	= models.CharField(max_length=30, unique=True, validators=[phonenumber])
 	country 		= models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
 	university 		= models.ForeignKey(University, on_delete=models.SET_NULL, null=True)
-	#course			= models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
+	course			= models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
 	date_joined 	= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
 	last_login		= models.DateTimeField(verbose_name='last login', auto_now=True)
 	is_admin 		= models.BooleanField(default=False)
@@ -80,27 +80,8 @@ class user(AbstractBaseUser):
 	
 	objects = MyAccountManager()
 
-	# def __str__(self):
-	# 	return self.firstname 
-
-	# def __str__(self):
-	# 	return self.surname
-
 	def __str__(self):
 		return self.email
-
-	# def __str__(self):
-	# 	return self.phonenumber
-
-	# def __str__(self):
-	# 	return self.university
-
-	# def __str__(self):
-	# 	return self.course
-
-	# def __str__(self):
-	# 	return self.date_joined
-
 
 	def has_perm(self, perm, obj=None):
 		return self.is_admin

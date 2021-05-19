@@ -8,7 +8,7 @@ from django.contrib import messages
 
 # Create your views here.
 from . forms import create_user_form
-from .models import user, Country, University
+from .models import user, Country, University, Course
 from .decorators import *
 
 @unauthenticated_user
@@ -59,8 +59,13 @@ def home(request):
 def load_cities(request):
     country_id = request.GET.get('country_id')
     universities = University.objects.filter(country_id=country_id).all()
-    return render(request, 'App1/city_dropdown_list_options.html', {'universities': universities})
-    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+    return render(request, 'App1/university_dropdown_list_options.html', {'universities': universities})
 
+def load_cities2(request):
+    university_id = request.GET.get('country_id')
+    courses = Course.objects.filter(country_id=university_id).all()
+    return render(request, 'App1/course_dropdown_list_options.html', {'courses': courses})
+    # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+    
 
 

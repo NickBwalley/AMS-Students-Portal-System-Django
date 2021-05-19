@@ -9,4 +9,7 @@ urlpatterns = [
 	path('', views.home, name='home'),
 
 	path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'), # AJAX
+	path('ajax/load-cities2/', views.load_cities2, name='ajax_load_cities2'), # AJAX
+
+
 ]
