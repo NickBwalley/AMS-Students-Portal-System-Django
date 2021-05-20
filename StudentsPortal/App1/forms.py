@@ -12,7 +12,7 @@ from App1.models import user, Country, University, Course
 class create_user_form(UserCreationForm):
 	class Meta:
 		model = user
-		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course']
+		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course', 'profile_pic']
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)

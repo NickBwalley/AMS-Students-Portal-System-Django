@@ -57,6 +57,12 @@ def home(request):
 def my_profile(request):
 	user = request.user
 	form = create_user_form(instance=user)
+
+	if request.method == 'POST':
+		form = create_user_form(request.POST, request.FILES,instance=user)
+		if form.is_valid:
+			form.save()
+			
 	context = {'form':form}
 	return render(request, 'App1/my_profile.html', context)
 
