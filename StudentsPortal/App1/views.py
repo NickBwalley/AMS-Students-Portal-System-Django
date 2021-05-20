@@ -53,10 +53,12 @@ def logout_user(request):
 def home(request):
 	return render(request, 'App1/dashboard.html')
 
-
+@login_required(login_url='login') # only allows users who are logged in with correct credentials
 def my_profile(request):
-	# context = {}
-	return render(request, 'App1/my_profile.html')
+	user = request.user
+	form = create_user_form(instance=user)
+	context = {'form':form}
+	return render(request, 'App1/my_profile.html', context)
 
 # AJAX
 def load_cities(request):
