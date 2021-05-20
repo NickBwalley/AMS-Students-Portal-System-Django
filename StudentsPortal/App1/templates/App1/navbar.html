@@ -16,18 +16,24 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="" style="color: #00ff00;">Hello, {{request.user}}</a>
+        </li>
         <li class="nav-item active">
           <a class="nav-link" href="">Dashboard</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="">Profile</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}" style="color: #ff0000;">Logout</a>
         </li>
         
       </ul>
     </div>
-    
-    <span class="hello-msg">Hello, {{request.user}} </span>
-    <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+
   </nav>
