@@ -54,6 +54,9 @@ def home(request):
 	return render(request, 'App1/dashboard.html')
 
 
+def my_profile(request):
+	# context = {}
+	return render(request, 'App1/my_profile.html')
 
 # AJAX
 def load_cities(request):
