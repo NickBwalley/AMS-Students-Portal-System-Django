@@ -1,6 +1,7 @@
 {%  extends 'App1/main.html' %}
 {% load static %}
 {% block content %}
+{% load crispy_forms_tags %}
 
 <style>
 	.profile-pic{
@@ -28,9 +29,62 @@
 			
 			<form method="POST" action="" enctype="multipart/form-data">
 				{% csrf_token	%}
-				{{form.as_p}}
+
+				<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.firstname|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.surname|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.email|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.phonenumber|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.country|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.university|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.course|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.password1|as_crispy_field }}
+            		</div>
+          		</div>
+
+          		<div class="form-group">
+            		<div class="col-lg-8">
+              			{{form.password2|as_crispy_field }}
+            		</div>
+          		</div>
 		
-			<input class="btn btn-primary" type="submit" name="Update Information">
+			<input class="btn btn-success" type="submit" name="Update Information" value="Save Changes">
 			</form>
 		</div>
 	</div>
