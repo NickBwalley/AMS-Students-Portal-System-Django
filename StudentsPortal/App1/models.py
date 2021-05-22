@@ -92,7 +92,7 @@ class user(AbstractBaseUser):
 class Profile(models.Model):
 	user 			= models.OneToOneField(user, on_delete=models.CASCADE)
 	profile_pic 	= models.ImageField(null=True, default="default_profile_pic.jpg", upload_to="profile_pics")
-	bio 			= models.CharField(max_length=150, null=True, blank=True)
+	bio 			= models.CharField(max_length=40, default="Hey there...")
 
 	def __str__(self):
 		return self.user.email
