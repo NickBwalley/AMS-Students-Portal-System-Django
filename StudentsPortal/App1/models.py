@@ -68,7 +68,6 @@ class user(AbstractBaseUser):
 	country 		= models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
 	university 		= models.ForeignKey(University, on_delete=models.SET_NULL, null=True)
 	course			= models.ForeignKey(Course, on_delete=models.SET_NULL, blank=True, null=True)
-	profile_pic 	= models.ImageField(null=True, blank=True)
 	date_joined 	= models.DateTimeField(verbose_name='date joined', auto_now_add=True)
 	last_login		= models.DateTimeField(verbose_name='last login', auto_now=True)
 	is_admin 		= models.BooleanField(default=False)
@@ -90,3 +89,10 @@ class user(AbstractBaseUser):
 	def has_module_perms(self, app_label):
 		return True
 
+class Profile(models.Model):
+	user 			= models.OneToOneField(user, on_delete=models.CASCADE)
+	profile_pic 	= models.ImageField(null=True, default="default_profile_pic.jpg", upload_to="profile_pics")
+	bio 			= models.CharField(max_length=150, null=True, blank=True)
+
+	def __str__(self):
+		return self.user.email

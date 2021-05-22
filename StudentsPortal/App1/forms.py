@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 #from django.contrib.auth.models import User
 from django import forms
-from App1.models import user, Country, University, Course
+from .models import *
 
 
 # class CreateUserForm(UserCreationForm):
@@ -12,7 +12,7 @@ from App1.models import user, Country, University, Course
 class create_user_form(UserCreationForm):
 	class Meta:
 		model = user
-		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course', 'profile_pic']
+		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course']
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -37,4 +37,8 @@ class create_user_form(UserCreationForm):
 		elif self.instance.pk:
 			self.fields['course'].queryset = self.instance.university.course_set.order_by('name')
 
-	
+
+class Profile(UserCreationForm):
+	class Meta:
+		model = Profile
+		fields = '__all__'
