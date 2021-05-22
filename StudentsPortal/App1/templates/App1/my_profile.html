@@ -20,23 +20,24 @@
 			<hr>
 			<h3 style="text-align: center">My Profile</h3>
 			<hr>
-			<img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" ><br>
+			<img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" >
+      <div class="mt-3 text-center">
+        <button class="btn btn-primary" type="button">
+          <i class="fas fa-camera"></i>
+          <span>Change Photo</span>
+        </button>
+      </div>
+        <hr>
 		  <textarea placeholder="Enter your Bio">{{request.user.profile.bio}}</textarea>
-      <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                  <div class="text-center text-sm-left mb-2 mb-sm-0">
-                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.firstname}} {{request.user.surname}}</h4>
-                    <p class="mb-0">{{request.user.email}}</p>
-                    <span class="badge badge-secondary">administrator</span>
-                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
-                    <div class="text-muted"><small>Last seen 2 hours ago</small></div>
-                    <div class="mt-2">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-camera"></i>
-                        <span>Change Photo</span>
-                      </button>
-                    </div>
-                  </div>  
-                </div>
+        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+          <div class="text-center text-sm-left mb-2 mb-sm-0">
+            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.firstname}} {{request.user.surname}}</h4>
+            <p class="mb-0">{{request.user.email}}</p>
+            <span class="badge badge-secondary">administrator</span>
+            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+            <div class="text-muted"><small>Last seen 2 hours ago</small></div>
+          </div>  
+        </div>
 		</div>
 	</div>
 	<div class="col-md-9">
