@@ -49,10 +49,4 @@ class update_user_profile(forms.ModelForm):
 		model = user
 		fields = ['firstname', 'surname']
 		exclude = ['email', 'phonenumber', 'country', 'university', 'course', 'password1', 'password2']
-		# email = forms.CharField(required=False)
-		# phonenumber = forms.CharField(required=False)
-		# country = forms.CharField(required=False)
-		# university = forms.CharField(required=False)
-		# course = forms.CharField(required=False)
-		# password1 = forms.CharField(required=False)
-		# password2 = forms.CharField(required=False)
+		
