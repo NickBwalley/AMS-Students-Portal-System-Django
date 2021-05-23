@@ -98,6 +98,7 @@ class Profile(models.Model):
 	def __str__(self):
 		return self.user.email
 
+# signals
 @receiver(post_save, sender=user)
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:

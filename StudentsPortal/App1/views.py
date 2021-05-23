@@ -7,8 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
-from . forms import create_user_form
-from .models import user, Country, University, Course
+from .forms import *
+from .models import *
 from .decorators import *
 
 @unauthenticated_user
@@ -56,10 +56,10 @@ def home(request):
 @login_required(login_url='login') # only allows users who are logged in with correct credentials
 def my_profile(request):
 	user = request.user
-	form = create_user_form(instance=user)
+	form = update_user_profile(instance=user)
 
 	if request.method == 'POST':
-		form = create_user_form(request.POST, request.FILES,instance=user)
+		form = update_user_profile(request.POST, request.FILES,instance=user)
 		if form.is_valid:
 			form.save()
 			
