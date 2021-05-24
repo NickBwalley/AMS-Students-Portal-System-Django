@@ -34,9 +34,13 @@
           <div class="text-center text-sm-left mb-2 mb-sm-0">
             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.firstname}} {{request.user.surname}}</h4>
             <p class="mb-0">{{request.user.email}}</p>
-            <span class="badge badge-secondary">administrator</span>
-            <div class="text-muted"><small>Joined: 22 March 2021</small></div>
-            <div class="text-muted"><small>Active: 2 hours ago</small></div>
+            {% if request.user.is_admin %}
+            <span class="badge badge-secondary">Administrator</span>
+            {% else %}
+            <span class="badge badge-secondary">Active-User</span>
+            {% endif %}
+            <div class="text-muted"><small>Joined: {{request.user.date_joined}}</small></div>
+            <div class="text-muted"><small>Active: {{request.user.last_login}}</small></div>
           </div>  
         </div>
 		</div>

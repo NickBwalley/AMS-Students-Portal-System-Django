@@ -13,6 +13,7 @@ class create_user_form(UserCreationForm):
 	class Meta:
 		model = user
 		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course']
+		
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
