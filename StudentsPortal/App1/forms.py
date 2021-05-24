@@ -38,15 +38,16 @@ class create_user_form(UserCreationForm):
 			self.fields['course'].queryset = self.instance.university.course_set.order_by('name')
 
 
-class Profile(UserCreationForm):
+class user_profile(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = '__all__'
+		exclude = ['user',]
 
 
 class update_user_profile(forms.ModelForm):
 	class Meta:
 		model = user
-		fields = ['firstname', 'surname']
-		exclude = ['email', 'phonenumber', 'country', 'university', 'course', 'password1', 'password2']
+		fields = ['firstname', 'surname', 'country']
+		exclude = ['email', 'phonenumber', 'university', 'course', 'password1', 'password2']
 		

@@ -32,7 +32,7 @@ class Course(models.Model):
 class MyAccountManager(BaseUserManager):
 	def create_user(self, email, password=None):
 		if not email:
-			raise ValueError("Student must have an Email")
+			raise ValueError("Email is a required field!")
 		
 		user = self.model(
 			email = self.normalize_email(email),

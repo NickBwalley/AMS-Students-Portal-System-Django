@@ -56,14 +56,18 @@ def home(request):
 @login_required(login_url='login') # only allows users who are logged in with correct credentials
 def my_profile(request):
 	user = request.user
+	user2 = request.user.profile
 	form = update_user_profile(instance=user)
+	form2 = user_profile(instance=user2)
 
 	if request.method == 'POST':
 		form = update_user_profile(request.POST, request.FILES,instance=user)
-		if form.is_valid:
+		form2 = user_profile(request.POST, request.FILES, instance=user2)
+		if form.is_valid and form2.is_valid:
 			form.save()
+			form2.save()
 			
-	context = {'form':form}
+	context = {'form':form, 'form2': form2}
 	return render(request, 'App1/my_profile.html', context)
 
 # AJAX
