@@ -9,17 +9,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto ml-auto">
-        <form onsubmit="event.preventDefault()" class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="text" placeholder="Search"> <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> </form>
+        <!-- <form onsubmit="event.preventDefault()" class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="text" placeholder="Search"> <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> </form> -->
+
+        <form class="search-bar justify-content-start">
+            <input type="text" class="form-control" name="q" id="id_q_large" placeholder="Search...">
+        </form>
                 
       </ul>
       <ul class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
 
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" style="color: #00ff00;">Hello, {{request.user.firstname}} {{request.user.surname}}</a>
         </li>
 
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Chats</a>
         </li>
 
         <li class="nav-item">
@@ -37,7 +46,7 @@
         </li>
         
       </ul>
-
+        {% endif %}
     </div>
 
   </nav>
