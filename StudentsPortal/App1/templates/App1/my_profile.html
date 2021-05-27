@@ -32,16 +32,19 @@
 		  <textarea placeholder="Enter your Bio" readonly>{{request.user.profile.bio}}</textarea>
         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
           <div class="text-center text-sm-left mb-2 mb-sm-0">
-            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.firstname}} {{request.user.surname}}</h4>
-            <p class="mb-0">{{request.user.email}}</p>
+            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.firstname}} {{request.user.surname}} 
+            </h4>
+            <p class="mb-0">{{request.user.email}}</p> 
             {% if request.user.is_admin %}
             <span class="badge badge-secondary">Administrator</span>
+            <span class="material-icons">verified</span>
             {% else %}
             <span class="badge badge-secondary">Active-User</span>
             {% endif %}
             <div class="text-muted"><small>Joined: {{request.user.date_joined}}</small></div>
             <div class="text-muted"><small>Last-Seen: {{request.user.last_login}}</small></div>
-          </div>  
+          </div>
+
         </div>
 		</div>
 	</div>
