@@ -5,7 +5,7 @@ from App1.models import *
 
 
 class UserAdmin(UserAdmin):
-	list_display = ('username', 'email', 'phonenumber', 'last_login', 'is_admin', 'is_staff', 'is_verified')
+	list_display = ('id', 'username', 'email', 'phonenumber', 'is_admin', 'is_staff', 'is_verified')
 	search_fields = ('email', 'username')
 	readonly_fields = ('id',  'country', 'university', 'course',  'date_joined', 'last_login',)
 
