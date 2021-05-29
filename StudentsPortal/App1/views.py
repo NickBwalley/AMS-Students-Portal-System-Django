@@ -19,7 +19,7 @@ def registration_page(request):
 		form = create_user_form(request.POST)
 		if form.is_valid():
 			form.save()
-			user = form.cleaned_data.get('firstname') # allows to get only the username without any other details
+			user = form.cleaned_data.get('username') # allows to get only the username without any other details
 			messages.success(request, 'Account successfully created for: ' + user)
 			return redirect('login')
 
@@ -56,18 +56,15 @@ def home(request):
 @login_required(login_url='login') # only allows users who are logged in with correct credentials
 def my_profile(request):
 	user = request.user
-	user2 = request.user.profile
 	form = update_user_profile(instance=user)
-	form2 = user_profile(instance=user2)
 
 	if request.method == 'POST':
 		form = update_user_profile(request.POST, request.FILES,instance=user)
-		form2 = user_profile(request.POST, request.FILES, instance=user2)
-		if form.is_valid and form2.is_valid:
+		if form.is_valid:
 			form.save()
-			form2.save()
 			
-	context = {'form':form, 'form2': form2}
+			
+	context = {'form':form}
 	return render(request, 'App1/my_profile.html', context)
 
 # AJAX

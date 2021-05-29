@@ -101,14 +101,7 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							{{form.firstname}}
-						</div>
-
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							{{form.surname}}
+							{{form.username}}
 						</div>
 
 						<div class="input-group mb-2">
@@ -185,15 +178,14 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='Enter Firstname';
-		form_fields[2].placeholder='Enter Surname';
-		form_fields[3].placeholder='Enter Email-Address';
-		form_fields[4].placeholder='Enter Phonenumber';
+		form_fields[1].placeholder='Enter Username';
+		form_fields[2].placeholder='Enter Email-Address';
+		form_fields[3].placeholder='Enter Phonenumber';
 		//form_fields[5].placeholder='Enter Country';
 		// form_fields[6].placeholder='Enter University';
 		//form_fields[7].placeholder='Enter Course';
-		form_fields[5].placeholder='Enter Password';
-		form_fields[6].placeholder='Confirm Password';
+		form_fields[4].placeholder='Enter Password';
+		form_fields[5].placeholder='Confirm Password';
 
 
 		for (var field in form_fields){	

@@ -89,6 +89,20 @@ DATABASES = {
     }
 }
 
+# DB_NAME = "students_portal"
+# DB_USER = "nickbiiy"
+# DB_PASSWORD = "wearelegion"
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': DB_NAME,
+#         'USER': DB_USER, 
+#         'PASSWORD': DB_PASSWORD,
+#         'HOST': 'localhost', 
+#         'PORT': '5432',
+
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

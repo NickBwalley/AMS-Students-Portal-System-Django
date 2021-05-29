@@ -3,16 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import *
 
-
-# class CreateUserForm(UserCreationForm):
-# 	class Meta:
-# 		model = User
-# 		fields = ['username', 'email', 'password1', 'password2']
-
 class create_user_form(UserCreationForm):
 	class Meta:
 		model = user
-		fields = ['firstname', 'surname', 'email', 'phonenumber', 'country', 'university', 'course']
+		fields = ['username', 'email', 'phonenumber', 'country', 'university', 'course']
 		
 
 	def __init__(self, *args, **kwargs):
@@ -39,16 +33,16 @@ class create_user_form(UserCreationForm):
 			self.fields['course'].queryset = self.instance.university.course_set.order_by('name')
 
 
-class user_profile(forms.ModelForm):
-	class Meta:
-		model = Profile
-		fields = '__all__'
-		exclude = ['user',]
+# class user_profile(forms.ModelForm):
+# 	class Meta:
+# 		model = Profile
+# 		fields = '__all__'
+# 		exclude = ['user',]
 
 
 class update_user_profile(forms.ModelForm):
 	class Meta:
 		model = user
-		fields = ['firstname', 'surname', 'country']
-		exclude = ['email', 'phonenumber', 'university', 'course', 'password1', 'password2']
+		fields = ['username', 'phonenumber', 'country', 'profile_pic', 'bio']
+		exclude = ['email', 'university', 'course', 'password1', 'password2']
 		
