@@ -32,7 +32,7 @@
 		  <textarea placeholder="Enter your Bio" readonly>{{request.user.bio}}</textarea>
         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
           <div class="text-center text-sm-left mb-2 mb-sm-0">
-            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.usernane}} </h4>
+            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.username}} </h4>
             <p class="mb-0">{{request.user.email}}</p> 
             {% if request.user.is_admin %}
             <span class="badge badge-secondary">Administrator</span>
