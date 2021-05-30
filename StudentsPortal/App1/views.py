@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+from django.conf import settings
 
 # Create your views here.
 from .forms import *
@@ -53,19 +56,7 @@ def logout_user(request):
 def home(request):
 	return render(request, 'App1/dashboard.html')
 
-@login_required(login_url='login') # only allows users who are logged in with correct credentials
-def my_profile(request):
-	user = request.user
-	form = update_user_profile(instance=user)
 
-	if request.method == 'POST':
-		form = update_user_profile(request.POST, request.FILES,instance=user)
-		if form.is_valid:
-			form.save()
-			
-			
-	context = {'form':form}
-	return render(request, 'App1/my_profile.html', context)
 
 # AJAX
 def load_cities(request):
@@ -78,6 +69,78 @@ def load_cities2(request):
     courses = Course.objects.filter(university_id=university_id).all()
     return render(request, 'App1/course_dropdown_list_options.html', {'courses': courses})
     # return JsonResponse(list(cities.values('id', 'name')), safe=False)
+
+
+
+@login_required(login_url='login') # only allows users who are logged in with correct credentials
+def my_profile(request):
+	user = request.user
+	user_id = request.user.id
+	form = update_user_profile(instance=user)
+
+	if request.method == 'POST':
+		form = update_user_profile(request.POST, request.FILES,instance=user)
+		if form.is_valid:
+			form.save()
+			return redirect('my_profile')
+			
+			
+	context = {'form':form}
+	return render(request, 'App1/my_profile.html', context)
+
+
+def other_profile(request):
+	# context = {}
+	
+	return render(request, 'App1/other_profile.html')
+
+def account_view(request, id):
+	'''
+	-LOGIC here is kind of tricky
+		is_self(boolean)
+			is_friend(boolean)
+				-1: NO_REQUEST_SENT
+				0: THEM_SENT_TO_YOU
+				1: YOU_SENT_TO_THEM
+	'''
+	context = {}
+	account = get_object_or_404(user, pk=id)
+	# global user;
+	# context = {}
+	# user_id = kwargs.get("user_id")
+
+	# try:
+	# 	account = user.objects.get(pk=user_id)
+	# except user.DoesNotExist:
+	# 	return HttpResponse("That User doesn't Exist!")
+	if account:
+		context['id']: account.id
+		context['username']: account.username
+		context['email']: account.email
+		context['profile_image']: account.profile_image.url
+		context['hide_email']: account.hide_email
+		context['hide_phonenumber']: account.hide_phonenumber
+
+		# define state template variables
+		is_self = True
+		# is_friend = False
+
+		# user = request.user
+		if account.is_authenticated and account != id:
+			is_self = False
+		elif not account.is_authenticated:
+			is_self = False
+
+		context['is_self'] = is_self
+		# context['is_friend'] = is_friend
+		context['BASE_URL'] = settings.BASE_URL
+
+	return render(request, "App1/other_profile.html", {'id':id, 'account':account, 'context': context})
+
+
+
+
+
     
 
 

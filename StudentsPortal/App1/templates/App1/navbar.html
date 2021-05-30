@@ -32,12 +32,16 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_profile' %}">Profile</a>
+          <a class="nav-link" href="{% url 'view' request.user.id %}">Profile</a>
         </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="{% url 'my_profile' %}">Profile</a>
+        </li> -->
         <!-- **********ADMIN ADDED FUNCTIONALITY************** -->
         {% if request.user.is_admin %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_profile' %}">Miscellaneous</a>
+          <a class="nav-link" href="#">Miscellaneous</a>
         </li>
         {% endif %}
         <!-- ************************************************ -->
