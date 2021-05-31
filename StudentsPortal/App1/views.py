@@ -94,6 +94,8 @@ def other_profile(request):
 	
 	return render(request, 'App1/other_profile.html')
 
+
+@login_required(login_url='login') # only allows users who are logged in with correct credentials
 def account_view(request, id):
 	'''
 	-LOGIC here is kind of tricky
@@ -104,8 +106,9 @@ def account_view(request, id):
 				1: YOU_SENT_TO_THEM
 	'''
 	context = {}
+	
 	account = get_object_or_404(user, pk=id)
-	# global user;
+	
 	# context = {}
 	# user_id = kwargs.get("user_id")
 
@@ -123,17 +126,20 @@ def account_view(request, id):
 
 		# define state template variables
 		is_self = True
+		is_self2 = True
 		# is_friend = False
 
-		# user = request.user
-		if account.is_authenticated and account != id:
-			is_self = False
-		elif not account.is_authenticated:
-			is_self = False
+		user_id = request.user.id
+		print(user_id)
+		print(account.id)
+		if user_id != account.id:
+			is_self2 = True
+
 
 		context['is_self'] = is_self
+		context['is_self2'] = is_self2
 		# context['is_friend'] = is_friend
-		context['BASE_URL'] = settings.BASE_URL
+		# context['BASE_URL'] = settings.BASE_URL
 
 	return render(request, "App1/other_profile.html", {'id':id, 'account':account, 'context': context})
 

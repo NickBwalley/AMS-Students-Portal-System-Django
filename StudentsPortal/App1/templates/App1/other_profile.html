@@ -34,18 +34,29 @@
         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
           <div class="text-center text-sm-left mb-2 mb-sm-0">
             <!-- <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.username}} </h4> -->
-            {% if is_self %}
+            <!-- {% if 'is_self == True' %}
             <p class="mb-1">Email: {{account.email}}</p> 
-              {% else %}
-                {% if hide_email %}
+              {% elif 'is_self == False' %}
+                {% if account.hide_email %}
                   <p class="mb-1">Email: ***************</p>
                 {% else %}
                   <p class="mb-1">Email: {{account.email}}</p>
                 {% endif %}
+                
             {% endif %}
             <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
             <p class="mb-1">Country: {{account.country}}</p>  
-            <!-- <p class="mb-1">UserId: {{account.id}}</p>   -->
+            <p class="mb-1">UserId: {{account.id}}</p> 
+            <hr> -->
+            {% if 'is_self' %}
+            <p class="mb-1">Email: {{account.email}}</p> 
+            
+            {% elif 'is_self2' %}
+              <p class="mb-1">Email: ****************</p> 
+            {% endif %}
+            <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
+            <p class="mb-1">Country: {{account.country}}</p>  
+            <p class="mb-1">UserId: {{account.id}}</p> 
             <hr>
             
             {% if account.is_admin %}
@@ -59,9 +70,11 @@
             <div class="text-muted"><small>Joined: {{account.date_joined}}</small></div>
             <div class="text-muted"><small>Last-Seen: {{account.last_login}}</small></div>
             <hr>
+            {% if 'is_self' %}
             <a class="btn btn-primary" href="{% url 'my_profile' %}">Update Profile</a>
             <hr>
             <a href="#">Change Password</a>
+            {% endif %}
           </div>
 
         </div>
