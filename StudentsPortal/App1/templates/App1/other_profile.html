@@ -53,9 +53,13 @@
             {% else %}
               <p class="mb-1">Email: ****************</p>
             {% endif %}
+            {% if request.user.id == account.id %}
             <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
+            {% else %}
+              <p class="mb-1">PhoneNumber: ****************</p>
+            {% endif %}
             <p class="mb-1">Country: {{account.country}}</p>  
-            <p class="mb-1">UserId: {{account.id}}</p> 
+            <!-- <p class="mb-1">UserId: {{account.id}}</p> --> 
             <hr>
             
             {% if account.is_admin %}
@@ -69,7 +73,7 @@
             <div class="text-muted"><small>Joined: {{account.date_joined}}</small></div>
             <div class="text-muted"><small>Last-Seen: {{account.last_login}}</small></div>
             <hr>
-            {% if 'account.id' %}
+            {% if request.user.id == account.id %}
             <a class="btn btn-primary" href="{% url 'my_profile' %}">Update Profile</a>
             <hr>
             <a href="#">Change Password</a>
