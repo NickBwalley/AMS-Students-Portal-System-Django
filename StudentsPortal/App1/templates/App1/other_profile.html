@@ -49,15 +49,29 @@
             <p class="mb-1">UserId: {{account.id}}</p> 
             <hr> -->
             {% if request.user.id == account.id %}
-            <p class="mb-1">Email: {{account.email}}</p> 
+            <p class="mb-1">Email: {{account.email}}</p>
             {% else %}
+              {% if account.hide_email %}
               <p class="mb-1">Email: ****************</p>
+              {% else %}
+                <p class="mb-1">Email: {{account.email}}</p>
+
+                {% endif %}
+              
             {% endif %}
+
             {% if request.user.id == account.id %}
             <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
             {% else %}
-              <p class="mb-1">PhoneNumber: ****************</p>
+              {% if account.hide_phonenumber %}
+              <p class="mb-1">Phonenumber: ****************</p>
+              {% else %}
+                <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
+
+                {% endif %}
+              
             {% endif %}
+            
             <p class="mb-1">Country: {{account.country}}</p>  
             <!-- <p class="mb-1">UserId: {{account.id}}</p> --> 
             <hr>
