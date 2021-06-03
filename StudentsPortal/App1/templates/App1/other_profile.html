@@ -48,11 +48,10 @@
             <p class="mb-1">Country: {{account.country}}</p>  
             <p class="mb-1">UserId: {{account.id}}</p> 
             <hr> -->
-            {% if 'is_self' %}
+            {% if request.user.id == account.id %}
             <p class="mb-1">Email: {{account.email}}</p> 
-            
-            {% elif 'is_self2' %}
-              <p class="mb-1">Email: ****************</p> 
+            {% else %}
+              <p class="mb-1">Email: ****************</p>
             {% endif %}
             <p class="mb-1">Phonenumber: {{account.phonenumber}}</p>
             <p class="mb-1">Country: {{account.country}}</p>  
@@ -70,7 +69,7 @@
             <div class="text-muted"><small>Joined: {{account.date_joined}}</small></div>
             <div class="text-muted"><small>Last-Seen: {{account.last_login}}</small></div>
             <hr>
-            {% if 'is_self' %}
+            {% if 'account.id' %}
             <a class="btn btn-primary" href="{% url 'my_profile' %}">Update Profile</a>
             <hr>
             <a href="#">Change Password</a>

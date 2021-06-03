@@ -125,21 +125,20 @@ def account_view(request, id):
 		context['hide_phonenumber']: account.hide_phonenumber
 
 		# define state template variables
-		is_self = True
-		is_self2 = True
+		is_self = False
 		# is_friend = False
 
 		user_id = request.user.id
 		print(user_id)
 		print(account.id)
-		if user_id != account.id:
-			is_self2 = True
+		if user_id == account.id:
+			is_self = True
 
-
-		context['is_self'] = is_self
-		context['is_self2'] = is_self2
+		# context['user_id'] = user_id
+		# context['is_self'] = is_self
 		# context['is_friend'] = is_friend
 		# context['BASE_URL'] = settings.BASE_URL
+		# context = {'user_id': user_id, 'account_id': account.id}
 
 	return render(request, "App1/other_profile.html", {'id':id, 'account':account, 'context': context})
 
