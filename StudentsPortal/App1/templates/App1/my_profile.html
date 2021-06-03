@@ -14,41 +14,6 @@
 
 <br>
 <div class="row justify-content-center">
-	<!-- <div class="col-md-3">
-		<div class="card card-body">
-			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Home</a>
-			<hr>
-			<h3 style="text-align: center">My Profile</h3>
-			<hr>
-			<img class="profile-pic" src="{{request.user.profile_pic.url}}" >
-      <div class="mt-3 text-center">
-        <button class="btn btn-primary" type="button">
-          <i class="fas fa-camera"></i>
-          <span>Change Photo</span>
-          <input type="file" name="">
-        </button>
-      </div>
-        <hr>
-		  <textarea placeholder="Enter your Bio" readonly>{{request.user.bio}}</textarea>
-        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-          <div class="text-center text-sm-left mb-2 mb-sm-0">
-            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{request.user.username}} </h4>
-            <p class="mb-0">{{request.user.email}}</p> 
-            {% if request.user.is_admin %}
-            <span class="badge badge-secondary">Administrator</span>
-            {% else %}
-            <span class="badge badge-secondary">Active-User</span>
-            {% endif %}
-            {% if request.user.is_verified %}
-            <span class="material-icons" style="color: blue;">verified</span>
-            {% endif %}
-            <div class="text-muted"><small>Joined: {{request.user.date_joined}}</small></div>
-            <div class="text-muted"><small>Last-Seen: {{request.user.last_login}}</small></div>
-          </div>
-
-        </div>
-		</div>
-	</div> -->
 	<div class="col-md-5">
 		<div class="card card-body">
 		  
@@ -90,6 +55,29 @@
                     {{form.bio |as_crispy_field}}
                 </div>
               </div>
+
+              <div class="mt-4 checkbox">
+                <label>
+                  <input type="checkbox" name="hide_email" id="hide_email" 
+                  
+                    {% if request.user.hide_email %}
+                      checked
+                   {% endif %}>
+                  Hide Email
+                </label>
+                
+              </div>
+
+              <div class="mt-4 checkbox">
+                <label>
+                  <input type="checkbox" name="hide_email"
+                  
+                    {% if request.user.phonenumber %}
+                      checked
+                   {% endif %}>
+                  Hide Phonenumber
+                </label>
+              </div>              
 
           		
 			<input class="btn btn-success" type="submit" name="Update Information" value="Save Changes">
