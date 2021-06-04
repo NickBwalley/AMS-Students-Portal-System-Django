@@ -56,30 +56,19 @@
                 </div>
               </div>
 
-              <div class="mt-4 checkbox">
-                <label>
-                  <input type="checkbox" name="hide_email" id="hide_email" 
-                  
-                    {% if request.user.hide_email %}
-                      checked
-                   {% endif %}>
-                  Hide Email
-                </label>
-                
+              <div class="form-group">
+                <div class="col-lg-9">
+                    {{form.hide_email |as_crispy_field}}
+                </div>
               </div>
 
-              <div class="mt-4 checkbox">
-                <label>
-                  <input type="checkbox" name="hide_email"
-                  
-                    {% if request.user.phonenumber %}
-                      checked
-                   {% endif %}>
-                  Hide Phonenumber
-                </label>
-              </div>              
-
-          		
+              <div class="form-group">
+                <div class="col-lg-9">
+                    {{form.hide_phonenumber |as_crispy_field}}
+                </div>
+              </div>
+     
+                   		
 			<input class="btn btn-success" type="submit" name="Update Information" value="Save Changes">
 			</form>
 		</div>

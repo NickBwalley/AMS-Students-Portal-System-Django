@@ -43,6 +43,6 @@ class create_user_form(UserCreationForm):
 class update_user_profile(forms.ModelForm):
 	class Meta:
 		model = user
-		fields = ['username', 'phonenumber', 'country', 'profile_pic', 'bio']
+		fields = ['username', 'phonenumber', 'country', 'profile_pic', 'bio', 'hide_email', 'hide_phonenumber']
 		exclude = ['email', 'university', 'course', 'password1', 'password2']
 		
