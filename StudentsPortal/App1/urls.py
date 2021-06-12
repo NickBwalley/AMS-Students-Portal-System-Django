@@ -14,6 +14,8 @@ urlpatterns = [
 	path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'), # AJAX
 	path('ajax/load-cities2/', views.load_cities2, name='ajax_load_cities2'), # AJAX
 
+	path('search/', views.account_search_view, name='search'),
+
 	# logic to rememeber
 	# path ('browserURL', views.function_defined_in_views.py, 'url_path_to_be_called_in_html')
 ]

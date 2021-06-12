@@ -11,7 +11,7 @@
       <ul class="navbar-nav mr-auto ml-auto">
         <!-- <form onsubmit="event.preventDefault()" class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="text" placeholder="Search"> <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> </form> -->
 
-        <form class="search-bar justify-content-start">
+        <form class="search-bar justify-content-start" onsubmit="return executeQuery();">
             <input type="text" class="form-control" name="q" id="id_q_large" placeholder="Search...">
         </form>
                 
@@ -54,3 +54,18 @@
     </div>
 
   </nav>
+
+
+  <script type="text/javascript">
+    
+    function executeQuery(){
+      var query = document.getElementById("id_q_large").value;
+      if(query == ""){
+        query = document.getElementById("id_q_large").value;
+
+      }
+      window.location.replace("{% url 'search' %}?q=" + query);
+      return false
+    }
+    
+  </script>

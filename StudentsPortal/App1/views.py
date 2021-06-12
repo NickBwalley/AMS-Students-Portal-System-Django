@@ -144,6 +144,21 @@ def account_view(request, id):
 
 
 
+def account_search_view(request, *args, **kwargs):
+	context = {}
+
+	if request.method == "GET":
+		search_query = request.GET.get("q")
+		if len(search_query) > 0:
+			search_results = user.objects.filter(email__icontains=search_query).filter(username__icontains=search_query).distinct()
+			# user = request.user
+			accounts = []
+			for account in search_results:
+				accounts.append((account, False)) # You have no friends 
+			context['accounts'] = accounts
+	return render(request, "App1/search_results.html", context)
+
+
 
 
     
